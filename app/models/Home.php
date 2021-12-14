@@ -12,6 +12,6 @@ class Home
 
     public function all()
     {
-        return DB::all('usuarios');
+        return DB::all("usuarios");
     }
 }

@@ -12,7 +12,7 @@ class HomeController extends Controller
  
     public function __construct()
     {
-        $this->home = new Home;
+        $this->home = new Home();
     }
 
     public function index($request)
