@@ -9,12 +9,12 @@ class Request
 
     public function __construct()
     {   
-        $this->url = strtolower($_SERVER["REQUEST_URI"]);        
+        $this->url = strtolower($_SERVER["REQUEST_URI"]);
     }
 
     public function getUrl()
     {
-        return $this->url;  
+        return $this->url;
     }
 
     public function getMethod()
