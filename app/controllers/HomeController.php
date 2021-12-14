@@ -29,6 +29,6 @@ class HomeController extends Controller
     public function users(Request $request)
     {
         $usuarios = $this->home->all();
-        return $this->render("users/usuarios", ["users" => $usuarios]);
+        return $this->render("test", ["users" => $usuarios]);
     }
 }

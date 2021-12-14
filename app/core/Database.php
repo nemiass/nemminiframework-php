@@ -34,6 +34,7 @@ class Database
                 $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             } catch (\PDOException $e) {
                 echo $e->getMessage();
+                exit();
             }
         }
         return $this->db;

@@ -8,7 +8,7 @@ class Request
     private $url;
 
     public function __construct()
-    {   
+    {
         $this->url = strtolower($_SERVER["REQUEST_URI"]);
     }
 

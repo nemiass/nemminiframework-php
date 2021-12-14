@@ -22,7 +22,7 @@ class App
 
     public function run()
     {
-        try 
+        try
         {
             $controller = $this->router->getControllerName();
             $this->action = $this->router->getAction();
