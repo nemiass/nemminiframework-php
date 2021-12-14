@@ -6,9 +6,8 @@ class View
 {
     public function renderView($view, $data=[])
     {
-        $config = Config::getInstance();
 
-        $file_view = $config->get("APP_ROOT").$config->get("VIEWS_FOLDER").$view.".php";
+        $file_view = VIEWS."/$view.php";
         if (file_exists($file_view))
         {
             extract($data);

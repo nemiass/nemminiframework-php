@@ -27,9 +27,8 @@ class App
             $controller = $this->router->getControllerName();
             $this->action = $this->router->getAction();
             $this->params = $this->router->getParams();
-            $c = Config::getInstance();
 
-            if (file_exists("{$c->get("APP_ROOT")}{$c->get("CONTROLLERS_FOLDER")}$controller.php")) {
+            if (file_exists(CONTROLLERS."/$controller.php")) {
                 $controller = '\\app\\controllers\\' . $controller;
             } else {
                 return $this->router->renderView("error/404", ["msg" => "404 NOT FOUND"]);

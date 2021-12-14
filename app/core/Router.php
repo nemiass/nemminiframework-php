@@ -2,6 +2,9 @@
 
 namespace app\core;
 
+use const config\DEFAULT_ACTION;
+use const config\DEFAULT_CONTROLLER;
+
 // Clase Router, se usaría en caso se necesite implementarolo
 
 class Router
@@ -28,8 +31,7 @@ class Router
 
     public function getController()
     {
-        $config = Config::getInstance();
-        $this->controller = ucwords($config->get("DEFAULT_CONTROLLER"));
+        $this->controller = ucwords(DEFAULT_CONTROLLER);
         if(isset($this->array_url[1])) 
         {
             $this->controller = ucwords($this->array_url[1]);
@@ -44,8 +46,7 @@ class Router
 
     public function getAction()
     {
-        $config = Config::getInstance();
-        $this->action = ucwords($config->get("DEFAULT_ACTION"));
+        $this->action = ucwords(DEFAULT_ACTION);
         if(isset($this->array_url[2])) 
         {
             $this->action = $this->array_url[2];

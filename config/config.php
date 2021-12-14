@@ -12,17 +12,15 @@ const DB_CHAR = "utf8mb4";
 
 // hostname
 DEFINE("HOSTNAME", "/nemminiframework");
-DEFINE("URL", $_SERVER["HTTP_HOST"].HOSTNAME);
-DEFINE("VIEWS", ROOT."/app/views");
+DEFINE("URL", $_SERVER["HTTP_HOST"].HOSTNAME); // 127.0.0.1/nemminiframework
+// ROOT = C:\xampp\htdocs\nemminiframework
+DEFINE("ROOT_APP", ROOT."/app");
+DEFINE("VIEWS", ROOT_APP."/views");
 DEFINE('PUBLIC_', ROOT."/public");
 DEFINE("ASSETS", HOSTNAME."/public/assets");
 
-$config = Config::getInstance();
-//configurando mi proyecto
-$config->set("APP_ROOT", dirname(__FILE__, 2)."/app/");
-$config->set("VIEWS_FOLDER", "views/");
-$config->set("MODELS_FOLDER", "models/");
-$config->set("CONTROLLERS_FOLDER", "controllers/");
-$config->set("DEFAULT_CONTROLLER", "Home");
-$config->set("DEFAULT_ACTION", "index");
+DEFINE("MODELS", ROOT_APP."/models");
+DEFINE("CONTROLLERS", ROOT_APP."/controllers");
 
+const DEFAULT_CONTROLLER = "Home";
+const DEFAULT_ACTION = "index";
