@@ -6,16 +6,15 @@ use const config\DSN;
 use const config\PASSWORD;
 use const config\USER;
 
-// DATABASE Singleton, model
 class Database
 {
-    public \PDO $db;
+    public \PDO|null $db;
 
     public function __construct()
     {
     }
 
-    public function getConnection(): \PDO
+    public function connect(): \PDO
     {
         try {
             $this->db = new \PDO(DSN, USER, PASSWORD, ["utf-8"]);
@@ -33,5 +32,10 @@ class Database
     public function close()
     {
         $this->db = null;
+    }
+
+    public function __destruct()
+    {
+        $this->close();
     }
 }
