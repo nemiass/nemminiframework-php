@@ -7,12 +7,11 @@ use const config\DSN;
 use const config\PASSWORD;
 use const config\USER;
 
-// BASE DE DATOS USANDO EL PATRON SINGLETON
-
+// DATABASE Singleton
 class Database
 {
-    private static $instance;
-    private $db = null;
+    private static Database $instance;
+    private \PDO $db;
 
     public function __construct()
     {
@@ -30,13 +29,21 @@ class Database
     {
         if (is_null($this->db)) {
             try {
-                $this->db = new \PDO(DSN, USER, PASSWORD, [DB_CHAR]);
-                $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $this->db = new \PDO(DSN, USER, PASSWORD, ["utf-8"]);
+
+                $this->db->setAttribute(
+                    \PDO::ATTR_ERRMODE,
+                    \PDO::ERRMODE_EXCEPTION
+                );
             } catch (\PDOException $e) {
                 echo $e->getMessage();
-                exit();
             }
         }
         return $this->db;
+    }
+
+    public function close()
+    {
+        $this->db = null;
     }
 }
