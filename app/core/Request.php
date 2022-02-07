@@ -10,12 +10,11 @@ class Request
     public function __construct()
     {
         $this->url = $_GET["url"];
-        echo $this->url;
     }
 
     public function getUrl()
     {
-        return $this->url;
+        return trim($this->url, "/");
     }
 
     public function getMethod()
@@ -26,6 +25,8 @@ class Request
     public function get(string $key)
     {
         $body = $this->getBody();
+        print_r($body);
+        exit();
 
         if(!isset($body[$key]))
         {
@@ -44,7 +45,7 @@ class Request
         elseif($this->getMethod() == "get")
         {
             $array_url = explode("/", trim($this->getUrl(), "/"));
-            $this->body = isset($array_url[3]) ? array_slice($array_url, 3) : [];
+            $this->body = isset($array_url[2]) ? array_slice($array_url, 2) : [];
         }
         return $this->body;
     }

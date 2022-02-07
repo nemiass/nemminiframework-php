@@ -22,5 +22,5 @@ DEFINE("ASSETS", HOSTNAME."/public/assets");
 DEFINE("MODELS", ROOT_APP."/models");
 DEFINE("CONTROLLERS", ROOT_APP."/controllers");
 
-const DEFAULT_CONTROLLER = "Home";
+const DEFAULT_CONTROLLER = "home";
 const DEFAULT_ACTION = "index";

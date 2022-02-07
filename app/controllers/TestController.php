@@ -10,6 +10,9 @@ class TestController extends Controller
 {
     public function index(Request $request)
     {
+        // print_r($request->get("n"));
+        // TODO: analizar el $request->get()
+
     }
 
     public function usuarios(Request $request)
@@ -27,5 +30,11 @@ class TestController extends Controller
             "telefono" => "000000111"
         ];
         $db->insert("usuarios", $data);
+    }
+
+    public function find2()
+    {
+        $db = new DB();
+        print_r($db->findOne("usuarios")->by("id_usuario")->value(1));
     }
 }

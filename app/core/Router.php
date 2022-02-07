@@ -12,12 +12,12 @@ class Router
     private Request $request;
     private $response;
 
-    private $array_url;
+    private array $array_url;
     private $controller;
     private $action;
     private $params;
 
-    public function __construct(Request $request, $response=null)
+    public function __construct(Request $request, $response = null)
     {
         $this->request = $request;
         $this->response = $response;
@@ -26,37 +26,35 @@ class Router
 
     public function setArrayUrl()
     {
-        $this->array_url = explode("/", trim($this->request->getUrl(), "/"));
+        $this->array_url = [];
+
+        if ($this->request->getUrl() != "") {
+            $this->array_url = explode("/", $this->request->getUrl());
+        }
     }
 
     public function getController()
     {
-        $this->controller = ucwords(DEFAULT_CONTROLLER);
-        if(isset($this->array_url[1])) 
-        {
-            $this->controller = ucwords($this->array_url[1]);
-        }
+        $dc = DEFAULT_CONTROLLER;
+        $this->controller = ucwords(empty($this->array_url) ? $dc : $this->array_url[0]);
         return $this->controller;
     }
 
     public function getControllerName()
     {
-        return $this->getController()."Controller";
+        return $this->getController() . "Controller";
     }
 
     public function getAction()
     {
-        $this->action = ucwords(DEFAULT_ACTION);
-        if(isset($this->array_url[2])) 
-        {
-            $this->action = $this->array_url[2];
-        }
+        $da = DEFAULT_ACTION;
+        $this->action = !isset($this->array_url[1]) ? $da : $this->array_url[1];
         return $this->action;
     }
 
     public function getParams()
     {
-        $this->params = isset($this->array_url[3]) ? array_slice($this->array_url, 3) : [];   
+        $this->params = isset($this->array_url[2]) ? array_slice($this->array_url, 2) : [];
         return $this->params;
     }
 

@@ -51,4 +51,32 @@ class DB
         $stm->execute($new_values);
         return $stm->rowCount() == 1;
     }
+
+    public function findOne(string $table_name): TableQuery
+    {
+        return new TableQuery($table_name);
+    }
+}
+
+class TableQuery
+{
+    private string $column;
+    private string|int $value;
+
+    public function __construct(
+        private string $table_name
+    ) {}
+
+    public function by(string $column): TableQuery
+    {
+        $this->column = $column;
+        return $this;
+    }
+
+    public function value(string|int $value)
+    {
+        $this->value = $value;
+        $db = new DB();
+        return $db->find($this->table_name, $this->column, $this->value);
+    }
 }
