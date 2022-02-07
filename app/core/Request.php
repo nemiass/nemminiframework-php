@@ -10,6 +10,7 @@ class Request
     public function __construct()
     {
         $this->url = $_GET["url"];
+        echo $this->url;
     }
 
     public function getUrl()
