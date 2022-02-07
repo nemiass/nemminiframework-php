@@ -9,7 +9,7 @@ class Request
 
     public function __construct()
     {
-        $this->url = strtolower($_SERVER["REQUEST_URI"]);
+        $this->url = $_GET["url"];
     }
 
     public function getUrl()
