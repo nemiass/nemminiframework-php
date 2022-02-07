@@ -17,7 +17,7 @@ class Database
     public function connect(): \PDO
     {
         try {
-            $this->db = new \PDO(DSN, USER, PASSWORD, ["utf-8"]);
+            $this->db = new \PDO(DSN, USER, PASSWORD);
 
             $this->db->setAttribute(
                 \PDO::ATTR_ERRMODE,
