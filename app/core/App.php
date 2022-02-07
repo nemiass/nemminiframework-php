@@ -28,13 +28,11 @@ class App
             $this->action = $this->router->getAction();
             $this->params = $this->router->getParams();
 
-            if (file_exists(CONTROLLERS."/$controller.php")) {
-                $controller = '\\app\\controllers\\' . $controller;
-            } else {
+            if (!file_exists(CONTROLLERS."/$controller.php")) {
                 return $this->router->renderView("error/404", ["msg" => "404 NOT FOUND"]);
-                // exit();
             }
 
+            $controller = '\\app\\controllers\\' . $controller;
             $this->controller = new $controller;
 
             if (!method_exists($this->controller, $this->action)) {

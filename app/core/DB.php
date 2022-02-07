@@ -36,19 +36,19 @@ class DB
         return $stm->fetchObject();
     }
 
-    public function insert(string $table, array $values): int|bool
+    public function insert(string $table, array $data): bool
     {
         $new_values = array();
-
-        foreach ($values as $k => $v) {
-            $new_values[":{$k}"] = is_null($v)? null: $v;
+        foreach ($data as $k => $v) {
+            $new_values[":{$k}"] = $v;
         }
 
-        $v = implode(", ", array_keys($new_values));
-        $query = "INSERT INTO $table VALUES({$v})";
+        $columns = implode(", ", array_keys($data));
+        $values = implode(", ", array_keys($new_values));
+        $query = "INSERT INTO {$table}({$columns}) VALUES({$values})";
 
         $stm = $this->pdo->prepare($query);
         $stm->execute($new_values);
-        return $stm->rowCount();
+        return $stm->rowCount() == 1;
     }
 }
