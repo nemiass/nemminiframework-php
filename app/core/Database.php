@@ -12,6 +12,7 @@ class Database
 
     public function __construct()
     {
+        $this->db = null;
     }
 
     public function connect(): \PDO

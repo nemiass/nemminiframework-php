@@ -2,8 +2,6 @@
 
 namespace config;
 
-use app\core\Config;
-
 // config BD
 const DSN = "mysql:host=localhost;dbname=home";
 const USER = "root";
