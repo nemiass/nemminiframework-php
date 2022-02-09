@@ -39,14 +39,12 @@ class DB
     public function insert(string $table, array $data): bool
     {
         $new_values = array();
-        foreach ($data as $k => $v) {
-            $new_values[":{$k}"] = $v;
-        }
+        foreach ($data as $k => $v) $new_values[":{$k}"] = $v;
 
         $columns = implode(", ", array_keys($data));
         $values = implode(", ", array_keys($new_values));
-        $query = "INSERT INTO {$table}({$columns}) VALUES({$values})";
 
+        $query = "INSERT INTO {$table}({$columns}) VALUES({$values})";
         $stm = $this->pdo->prepare($query);
         $stm->execute($new_values);
         return $stm->rowCount() == 1;
@@ -73,7 +71,7 @@ class TableQuery
         return $this;
     }
 
-    public function value(string|int $value)
+    public function value(string|int $value): object|bool
     {
         $this->value = $value;
         $db = new DB();

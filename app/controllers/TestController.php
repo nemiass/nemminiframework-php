@@ -32,9 +32,13 @@ class TestController extends Controller
         $db->insert("usuarios", $data);
     }
 
-    public function find2()
+    public function users()
     {
         $db = new DB();
-        print_r($db->findOne("usuarios")->by("id_usuario")->value(1));
+        $ususario = $db
+            ->findOne("usuarios")
+            ->by("id_usuario")
+            ->value(1);
+        print_r($ususario);
     }
 }
